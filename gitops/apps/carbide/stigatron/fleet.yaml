@@ -6,3 +6,6 @@ helm:
   releaseName: stigatron
   valuesFiles:
     - values.yaml
+
+dependsOn:
+- name: compliance-gitops-apps-compliance-cis_operator_crd
