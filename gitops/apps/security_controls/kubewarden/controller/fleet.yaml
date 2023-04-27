@@ -1,0 +1,6 @@
+defaultNamespace: kubewarden
+helm:
+  repo: https://charts.rancher.io
+  chart: kubewarden-controller
+  version: 1.5.0
+  releaseName: kubewarden-controller
