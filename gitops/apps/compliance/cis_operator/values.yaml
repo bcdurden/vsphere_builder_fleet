@@ -5,7 +5,7 @@ alerts:
   severity: warning
 global:
   cattle:
-    clusterName: ''
+    systemDefaultRegistry: rgcrprod.azurecr.us
   kubectl:
     repository: rancher/kubectl
     tag: v1.20.2

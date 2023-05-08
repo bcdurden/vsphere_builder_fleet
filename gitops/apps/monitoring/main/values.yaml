@@ -298,7 +298,7 @@ defaultRules:
 fullnameOverride: ''
 global:
   cattle:
-    systemDefaultRegistry: ''
+    systemDefaultRegistry: rgcrprod.azurecr.us
     windows:
       enabled: false
   imagePullSecrets: []
