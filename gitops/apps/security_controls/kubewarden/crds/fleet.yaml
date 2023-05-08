@@ -1,6 +1,6 @@
 defaultNamespace: kubewarden
 helm:
-  repo: https://charts.rancher.io
+  repo: https://charts.kubewarden.io
   chart: kubewarden-crds
   version: 1.3.0
   releaseName: kubewarden-crds

@@ -165,7 +165,7 @@ enforcer:
 global:
   cattle:
     systemDefaultRegistry: rgcrprod.azurecr.us
-    url: https://rancher.ctoroadshow.local
+    url: https://rancher.sienarfleet.systems
   systemDefaultRegistry: rgcrprod.azurecr.us
 k3s:
   enabled: false

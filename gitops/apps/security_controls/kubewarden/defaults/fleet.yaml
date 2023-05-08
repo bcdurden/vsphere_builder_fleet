@@ -1,6 +1,6 @@
 defaultNamespace: kubewarden
 helm:
-  repo: https://charts.rancher.io
+  repo: https://charts.kubewarden.io
   chart: kubewarden-defaults
   version: 1.6.0
   releaseName: kubewarden-defaults
