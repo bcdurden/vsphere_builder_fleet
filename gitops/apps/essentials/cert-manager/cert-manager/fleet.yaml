@@ -1,0 +1,11 @@
+defaultNamespace: cert-manager
+helm:
+  repo: https://charts.jetstack.io
+  chart: cert-manager
+  version: 1.9.2
+  releaseName: cert-manager
+  valuesFiles:
+    - values.yaml
+
+dependsOn:
+- name: essentials-gitops-apps-essentials-cert-manager-crds

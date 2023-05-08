@@ -1,0 +1,14 @@
+global:
+  cattle:
+    systemDefaultRegistry: rgcrprod.azurecr.us
+image:
+  repository: rgcrprod.azurecr.us/jetstack/cert-manager-controller
+webhook:
+  image:
+    repository: rgcrprod.azurecr.us/jetstack/cert-manager-webhook
+cainjector:
+  image:
+    repository: rgcrprod.azurecr.us/jetstack/cert-manager-cainjector
+startupapicheck:
+  image:
+    repository: rgcrprod.azurecr.us/jetstack/cert-manager-ctl
