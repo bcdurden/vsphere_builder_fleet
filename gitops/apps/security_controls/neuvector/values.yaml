@@ -4,8 +4,8 @@ bottlerocket:
   enabled: false
   runtimePath: /run/dockershim.sock
 containerd:
-  enabled: true
-  path: /run/k3s/containerd/containerd.sock
+  enabled: false
+  path: /var/run/containerd/containerd.sock
 controller:
   affinity:
     podAntiAffinity:
@@ -41,7 +41,7 @@ controller:
     enabled: false
   disruptionbudget: 0
   enabled: true
-  env: null
+  env: []
   federation:
     managedsvc:
       annotations: {}
@@ -90,13 +90,22 @@ controller:
     path: /
     secretName: null
     tls: false
+  internal:
+    certificate:
+      caFile: ca.crt
+      keyFile: tls.key
+      pemFile: tls.crt
+      secret: neuvector-internal
   nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
   priorityClassName: null
   pvc:
     accessModes:
       - ReadWriteMany
     capacity: null
     enabled: false
+    existingClaim: false
     storageClass: null
   ranchersso:
     enabled: true
@@ -111,7 +120,7 @@ controller:
       maxSurge: 1
       maxUnavailable: 0
     type: RollingUpdate
-  tolerations: null
+  tolerations: []
 crdwebhook:
   enabled: true
   type: ClusterIP
@@ -123,11 +132,20 @@ cve:
     affinity: {}
     dockerPath: ''
     enabled: true
+    env: []
     image:
       hash: null
       repository: rancher/mirrored-neuvector-scanner
       tag: latest
+    internal:
+      certificate:
+        caFile: ca.crt
+        keyFile: tls.key
+        pemFile: tls.crt
+        secret: neuvector-internal
     nodeSelector: {}
+    podAnnotations: {}
+    podLabels: {}
     priorityClassName: null
     replicas: 3
     resources: {}
@@ -137,13 +155,16 @@ cve:
         maxSurge: 1
         maxUnavailable: 0
       type: RollingUpdate
-    tolerations: null
+    tolerations: []
   updater:
     enabled: true
     image:
       hash: null
       repository: rancher/mirrored-neuvector-updater
       tag: latest
+    nodeSelector: {}
+    podAnnotations: {}
+    podLabels: {}
     priorityClassName: null
     runAsUser: 1000
     schedule: 0 0 * * *
@@ -153,22 +174,41 @@ docker:
   enabled: false
 enforcer:
   enabled: true
+  env: []
   image:
     hash: null
     repository: rancher/mirrored-neuvector-enforcer
     tag: 5.1.3
+  internal:
+    certificate:
+      caFile: ca.crt
+      keyFile: tls.key
+      pemFile: tls.crt
+      secret: neuvector-internal
+  podAnnotations: {}
+  podLabels: {}
   priorityClassName: null
   resources: {}
   tolerations:
     - effect: NoSchedule
       key: node-role.kubernetes.io/master
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/control-plane
+  updateStrategy:
+    type: RollingUpdate
 global:
   cattle:
+    psp:
+      enabled: true
     systemDefaultRegistry: rgcrprod.azurecr.us
     url: https://rancher.sienarfleet.systems
   systemDefaultRegistry: rgcrprod.azurecr.us
+internal:
+  certmanager:
+    enabled: false
+    secretname: neuvector-internal
 k3s:
-  enabled: false
+  enabled: true
   runtimePath: /run/k3s/containerd/containerd.sock
 manager:
   affinity: {}
@@ -193,6 +233,8 @@ manager:
     secretName: null
     tls: false
   nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
   priorityClassName: null
   resources: {}
   route:
@@ -205,11 +247,11 @@ manager:
     annotations: {}
     loadBalancerIP: null
     type: NodePort
-  tolerations: null
+  tolerations: []
 oem: null
 openshift: false
-psp: true
 rbac: true
 registry: docker.io
 resources: {}
 serviceAccount: neuvector
+
