@@ -6,3 +6,17 @@ helm:
   releaseName: neuvector
   valuesFiles:
     - values.yaml
+
+targetCustomizations:
+- name: aws
+  helm:
+    values:
+      manager:
+        runAsUser: null
+      global:
+        cattle:
+          psp:
+            enabled: false
+  clusterSelector:
+    matchLabels:
+      location: aws
