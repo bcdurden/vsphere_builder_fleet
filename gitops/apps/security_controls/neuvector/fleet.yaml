@@ -13,6 +13,11 @@ targetCustomizations:
     values:
       manager:
         runAsUser: null
+      cve:
+        scanner:
+          runAsUser: null
+        updater:
+          runAsUser: null
       global:
         cattle:
           psp:
